@@ -8,3 +8,5 @@ on:
 jobs:
   linux_build:
     uses: ./.github/workflows/build_linux.yml
+  windows_build:
+    uses: ./.github/workflows/build_windows.yml
