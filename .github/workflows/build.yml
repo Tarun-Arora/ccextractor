@@ -1,0 +1,10 @@
+name: Check Build and Trigger WebHook
+
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  linux_build:
+    uses: ./.github/workflows/build_jobs/build_linux.yml
