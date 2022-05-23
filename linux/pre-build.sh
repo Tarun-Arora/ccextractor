@@ -3,7 +3,7 @@ echo "Obtaining Git commit"
 commit=(`git rev-parse HEAD 2>/dev/null`)
 if [ -z "$commit" ]; then
 	echo "Git command not present, trying folder approach"
-	if [ -d "../.git" ]; then 
+	if [ -d "../.git" ]; then
 		echo "Git folder found, using HEAD file"
 		head="`cat ../.git/HEAD`"
 		ref_pos=(`expr match "$head" 'ref: '`)
