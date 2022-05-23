@@ -55,6 +55,7 @@
 /*! Numa version for serialization */
 #define  NUMA_VERSION_NUMBER     1
 
+
     /*! Number array: an array of floats */
 struct Numa
 {

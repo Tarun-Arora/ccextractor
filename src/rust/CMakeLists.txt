@@ -6,6 +6,7 @@ else ()
     set(TARGET_DIR "release")
 endif ()
 
+
 # Check rust version
 set(MSRV "1.54.0")
 execute_process(COMMAND rustc --version
