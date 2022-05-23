@@ -1,6 +1,15 @@
 name: Build CCExtractor on Linux
 
-on: [workflow_call]
+on:
+  workflow_call:
+    paths:
+      - '.github/workflows/build_linux.yml'
+      - '**.c'
+      - '**.h'
+      - '**Makefile**'
+      - 'linux/**'
+      - 'package_creators/**'
+      - 'src/rust/**'
 
 jobs:
   build_shell:
