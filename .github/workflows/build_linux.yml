@@ -1,6 +1,6 @@
 name: Build CCExtractor on Linux
 
-on: [workflow_run]
+on: [workflow_call]
 
 jobs:
   build_shell:
