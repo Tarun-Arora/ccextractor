@@ -8,7 +8,7 @@ endif ()
 
 
 # Check rust version
-set(MSRV "1.54.0")
+set(MSRV "1.54.1")
 execute_process(COMMAND rustc --version
                 OUTPUT_VARIABLE Rust_Version)
 string(REGEX MATCH "[0-9]+.[0-9]+.[0-9]+" Rust_Version_string ${Rust_Version})

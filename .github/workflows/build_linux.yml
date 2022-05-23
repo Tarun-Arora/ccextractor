@@ -3,7 +3,7 @@ name: Build CCExtractor on Linux
 on:
   push:
     paths:
-    - '.github/workflows/build_linux.yml'
+#    - '.github/workflows/build_linux.yml'
     - '**.c'
     - '**.h'
     - '**Makefile**'
