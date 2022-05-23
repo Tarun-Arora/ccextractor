@@ -6,5 +6,5 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-#  linux_build:
-#    uses: ./.github/workflows/build_jobs/build_linux.yml
+  linux_build:
+    uses: ./.github/build_jobs/build_linux.yml
