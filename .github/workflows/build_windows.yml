@@ -141,13 +141,3 @@ jobs:
           BINDGEN_EXTRA_CLANG_ARGS: -fmsc-version=0
         run: msbuild ccextractor.sln /p:Configuration=Debug-Full /p:Platform=Win32
         working-directory: ./windows
-      - name: Display version information
-        run: ./ccextractorwinfull.exe --version
-        working-directory: ./windows/Debug-Full
-      - uses: actions/upload-artifact@v2
-        with:
-          name: CCExtractor Windows OCR and HardSubX Debug build
-          path: |
-            ./windows/Debug-Full/ccextractorwinfull.exe
-            ./windows/Debug-Full/ccextractorwinfull.pdb
-            ./windows/Debug-Full/*.dll
