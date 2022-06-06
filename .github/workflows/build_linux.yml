@@ -22,6 +22,7 @@ on:
     - 'linux/**'
     - 'package_creators/**'
     - 'src/rust/**'
+    
 jobs:
   build_shell:
     runs-on: ubuntu-latest
