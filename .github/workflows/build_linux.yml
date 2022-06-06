@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: Install tesseract
       run: sudo apt-get install libtesseract-dev
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v
     - name: build
       run: ./build
       working-directory: ./linux
