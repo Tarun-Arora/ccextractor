@@ -7,7 +7,7 @@ If this issue is related to the flutter GUI, please make the issue on the GUI re
 Please check all that apply and **remove the ones that do not**.
 
 In the necessary information section, if this is a regression (something that used to work does not work anymore), make sure to specify the last known working version.
-
+  
 Only specify the minimum number of arguments needed to reproduce the issue.
 
 In the additional information section, describe your problem.
