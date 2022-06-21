@@ -11,11 +11,6 @@ on:
       - "*.*"
   pull_request:
     types: [opened, synchronize, reopened]
-    paths:
-      - ".github/workflows/build_windows.yml"
-      - "**.c"
-      - "**.h"
-      - "windows/**"
 
 jobs:
   build_non_ocr_release:
