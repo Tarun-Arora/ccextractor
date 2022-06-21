@@ -9,7 +9,7 @@ Please check all that apply and **remove the ones that do not**.
 In the necessary information section, if this is a regression (something that used to work does not work anymore), make sure to specify the last known working version.
 
 Only specify the minimum number of arguments needed to reproduce the issue.
- 
+
 In the additional information section, describe your problem.
 
 Please make the affected input file available for us (no screenshots, those don't help!). Public links to Dropbox, Google Drive, etc, are all fine. If it is not possible to make it available publicly, send us a private invitation (both Dropbox and Google Drive allow that). In this case we will download the file and upload it to the private developer repository. Methods to send the private invitation to us can be found [here](https://ccextractor.org/public:general:support#email).
