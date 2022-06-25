@@ -2,20 +2,9 @@ name: Build CCExtractor on Windows
 
 on:
   push:
-    paths:
-      - ".github/workflows/build_windows.yml"
-      - "**.c"
-      - "**.h"
-      - "windows/**"
-    tags-ignore: # ignore push via new tag
-      - "*.*"
+    branches:
+    - master
   pull_request:
-    types: [opened, synchronize, reopened]
-    paths:
-      - ".github/workflows/build_windows.yml"
-      - "**.c"
-      - "**.h"
-      - "windows/**"
 
 jobs:
   build_non_ocr_release:
@@ -44,7 +33,7 @@ jobs:
       - name: Display version information
         run: ./ccextractorwin.exe --version
         working-directory: ./windows/x64/Release
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v2
         with:
           name: CCExtractor Windows Non-OCR Release build
           path: |
@@ -76,7 +65,7 @@ jobs:
       - name: Display version information
         run: ./ccextractorwin.exe --version
         working-directory: ./windows/x64/Debug
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v2
         with:
           name: CCExtractor Windows Non-OCR Debug build
           path: |
@@ -113,7 +102,7 @@ jobs:
       - name: Display version information
         run: ./ccextractorwinfull.exe --version
         working-directory: ./windows/Release-Full
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v2
         with:
           name: CCExtractor Windows OCR and HardSubX Release build
           path: |
@@ -146,13 +135,3 @@ jobs:
           BINDGEN_EXTRA_CLANG_ARGS: -fmsc-version=0
         run: msbuild ccextractor.sln /p:Configuration=Debug-Full /p:Platform=Win32
         working-directory: ./windows
-      - name: Display version information
-        run: ./ccextractorwinfull.exe --version
-        working-directory: ./windows/Debug-Full
-      - uses: actions/upload-artifact@v3
-        with:
-          name: CCExtractor Windows OCR and HardSubX Debug build
-          path: |
-            ./windows/Debug-Full/ccextractorwinfull.exe
-            ./windows/Debug-Full/ccextractorwinfull.pdb
-            ./windows/Debug-Full/*.dll
