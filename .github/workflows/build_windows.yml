@@ -1,12 +1,8 @@
 name: Build CCExtractor on Windows
 
 on:
-  workflow_call:
-    paths:
-      - ".github/workflows/build_windows.yml"
-      - "**.c"
-      - "**.h"
-      - "windows/**"
+  push:
+  pull_request:
 
 jobs:
   build_non_ocr_release:

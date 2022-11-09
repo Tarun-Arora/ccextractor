@@ -1,16 +1,8 @@
 name: Build CCExtractor on Linux
 
 on:
-  workflow_call:
-    paths:
-      - '.github/workflows/build_linux.yml'
-      - '**.c'
-      - '**.h'
-      - '**Makefile**'
-      - 'linux/**'
-      - 'package_creators/**'
-      - 'src/rust/**'
-
+  push:
+  pull_request:
 jobs:
   build_shell:
     runs-on: ubuntu-latest
@@ -64,7 +56,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: dependencies
-      run: sudo apt update && sudo apt install libtesseract-dev libavformat-dev libswscale-dev
+      run: sudo apt update && sudo apt install libtesseract-dev libavformat-dev libswscale-dev yasm
     - name: cmake
       run: mkdir build && cd build && cmake -DWITH_OCR=ON -DWITH_HARDSUBX=ON ../src
     - name: build
