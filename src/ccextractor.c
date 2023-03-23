@@ -48,7 +48,6 @@ int api_start(struct ccx_s_options api_options)
 #if defined(ENABLE_OCR) && defined(_WIN32)
 	setMsgSeverity(LEPT_MSG_SEVERITY);
 #endif
-
 	// Initialize CCExtractor libraries
 	ctx = init_libraries(&api_options);
 
@@ -65,6 +64,15 @@ int api_start(struct ccx_s_options api_options)
 		else
 			fatal(EXIT_NOT_CLASSIFIED, "Unable to create Library Context %d\n", errno);
 	}
+
+#ifdef ENABLE_HARDSUBX
+	if (api_options.hardsubx)
+	{
+		// Perform burned in subtitle extraction
+		hardsubx(&api_options, ctx);
+		return 0;
+	}
+#endif
 
 #ifdef WITH_LIBCURL
 	curl_global_init(CURL_GLOBAL_ALL);
@@ -193,14 +201,6 @@ int api_start(struct ccx_s_options api_options)
 				if (api_options.ignore_pts_jumps)
 					ccx_common_timing_settings.disable_sync_check = 1;
 				mprint("\rAnalyzing data in general mode\n");
-#ifdef ENABLE_HARDSUBX
-				if (api_options.hardsubx)
-				{
-					// Perform burned in subtitle extraction
-					hardsubx(&api_options, ctx);
-					return 0;
-				}
-#endif
 				tmp = general_loop(ctx);
 				if (!ret)
 					ret = tmp;
@@ -437,6 +437,9 @@ struct ccx_s_options *api_init_options()
 int main(int argc, char *argv[])
 {
 	setlocale(LC_ALL, ""); // Supports non-English CCs
+    // Use POSIX locale for numbers so we get "." as decimal separator and no
+    // thousands' groupoing instead of what the locale might say
+	setlocale (LC_NUMERIC, "POSIX");
 
 	struct ccx_s_options *api_options = api_init_options();
 	parse_configuration(api_options);
