@@ -7,6 +7,7 @@ on:
       - ".github/workflows/build_windows.yml"
       - "**.h"
       - "windows/**"
+  pull_request:
 
 jobs:
   build_non_ocr_release:

@@ -3,14 +3,15 @@ name: Build CCExtractor on Linux
 on:
   workflow_dispatch:
   push:
-    paths:
+  pull_request:
+
 jobs:
   build_shell:
     runs-on: ubuntu-latest
     steps:
     - name: Install tesseract
       run: sudo apt-get install libtesseract-dev
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2.3.4
     - name: build
       run: ./build
       working-directory: ./linux
@@ -21,14 +22,14 @@ jobs:
       run: mkdir ./linux/artifacts
     - name: Copy release artifact
       run: cp ./linux/ccextractor ./linux/artifacts/
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v2
       with:
         name: CCExtractor Linux build
         path: ./linux/artifacts
   build_autoconf:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2.3.4
     - name: run autogen
       run: ./autogen.sh
       working-directory: ./linux
@@ -44,7 +45,7 @@ jobs:
   cmake:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2.3.4
     - name: cmake
       run: mkdir build && cd build && cmake ../src
     - name: build
@@ -55,7 +56,7 @@ jobs:
   cmake_ocr_hardsubx:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2.3.4
     - name: dependencies
       run: sudo apt update && sudo apt install libtesseract-dev libavformat-dev libavdevice-dev libswscale-dev yasm
     - name: cmake
@@ -71,9 +72,9 @@ jobs:
   build_rust:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2.3.4
       - name: cache 
-        uses: actions/cache@v3
+        uses: actions/cache@v2
         with:
           path: |
             src/rust/.cargo/registry
