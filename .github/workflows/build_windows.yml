@@ -113,6 +113,10 @@ jobs:
         uses: microsoft/setup-msbuild@v1.3.1
       - name: Install llvm and clang
         run: choco install llvm
+      - name: Show Dir
+        run: Get-ChildItem -Path . -Filter *.dll -Recurse
+      - name: Show Dir
+        run: Get-ChildItem -Path . -Filter *.DLL -Recurse
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
@@ -141,12 +145,18 @@ jobs:
       - name: Display version information
         run: ./ccextractorwinfull.exe --version
         working-directory: ./windows/x64/Release-Full
+      - name: Show Dir
+        run: Get-ChildItem -Path . -Recurse
+        working-directory: ./windows/x64/Release-Full
+      - name: Show Dir
+        run: Get-ChildItem -Path . -Filter *.DLL -Recurse
       - uses: actions/upload-artifact@v3
         with:
           name: CCExtractor Windows OCR and HardSubX Release build
           path: |
             ./windows/x64/Release-Full/ccextractorwinfull.exe
             ./windows/x64/Release-Full/*.dll
+            ./windows/x64/Release-Full/*.DLL
   build_ocr_hardsubx_debug:
     runs-on: windows-2019
     steps:
